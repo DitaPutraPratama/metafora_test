@@ -47,7 +47,7 @@ class c_transaksi extends CI_Controller
 	{
 		$where=array('id'=>$id);
 		$data = [
-			'transaksi' => $this->model_transaksi->get_transaksi($where,'tb_transaksi')->result(),
+			'transaksi' => $this->model_transaksi->edit_data($id)->row(),
 			'barang' => $this->model_barang->get_barang(),
 			'pelanggan' => $this->model_pelanggan->get_pelanggan(),
 		];

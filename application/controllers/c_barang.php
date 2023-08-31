@@ -26,5 +26,13 @@ class C_barang extends CI_Controller{
 		$this->model_barang->input_barang($data, 'tb_barang');
 		redirect('c_barang/tampil_barang');
 	}
+	public function edit_barang($id_barang){
+		$where=array('id_barang'=>$id_barang);
+		$data['barang']=$this->model_barang->edit_barang($where,'tb_barang');
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('form_edit_barang', $data);
+		$this->load->view('template/footer');
+	}
 }
 ;?>
