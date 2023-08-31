@@ -7,7 +7,7 @@
 			<th>nama_barang</th>
 			<th>harga</th>
 			<th>Stok</th>
-						<th colspan="3">Aksi</th>
+			<th colspan="2">Aksi</th>
 		</tr>
 		<?php
 		$no = 1;
@@ -15,12 +15,11 @@
 			<tr>
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $brg->nama_barang; ?></td>
-				<td><?php echo $brg->harga; ?></td>
+				<td>Rp. <?= number_format($brg->harga, 0, ',', '.'); ?></td>
 				<td><?php echo $brg->stok; ?></td>
 
-				<td><?php echo anchor('c_dashboard/edit'.$brg->id_barang, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>') ; ?></td>
-				<td><?php echo anchor('c_dashboard/hapus' . $brg->id_barang, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>'); ?></td>
-				
+				<td><?php echo anchor('c_barang/edit/'.$brg->id_barang, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>') ; ?></td>
+				<td><?php echo anchor('c_barang/hapus_barang/' . $brg->id_barang, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>'); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</table>

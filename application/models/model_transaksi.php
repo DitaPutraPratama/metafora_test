@@ -2,7 +2,7 @@
 class Model_transaksi extends CI_Model{
 	public function get_transaksi()
 	{
-		$this->db->select('tb_transaksi.*,tb_barang.nama_barang,tb_barang.harga,tb_pelanggan.nama_pelanggan');
+		$this->db->select('tb_transaksi.*,tb_barang.nama_barang,tb_pelanggan.nama_pelanggan');
 		$this->db->from('tb_transaksi');
 		$this->db->join('tb_barang','tb_barang.id_barang=tb_transaksi.id_barang','left');
 		$this->db->join('tb_pelanggan','tb_pelanggan.id=tb_transaksi.id_pelanggan');
@@ -22,7 +22,7 @@ class Model_transaksi extends CI_Model{
 		$this->db->insert($table, $data);
 	}
 	public function edit_data($id){
-		$this->db->select('tb_transaksi.*, tb_barang.nama_barang, tb_barang.harga, tb_pelanggan.nama_pelanggan');
+		$this->db->select('tb_transaksi.*, tb_barang.nama_barang, tb_pelanggan.nama_pelanggan');
 		$this->db->from('tb_transaksi');
 		$this->db->where('tb_transaksi.id =' . $id);
 		$this->db->join('tb_barang', 'tb_barang.id_barang = tb_transaksi.id_barang', 'left');

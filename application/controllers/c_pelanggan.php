@@ -20,5 +20,32 @@ class C_pelanggan extends CI_Controller{
 		$this->model_pelanggan->input_pelanggan($data, 'tb_pelanggan');
 		redirect('c_pelanggan/tampil_pelanggan');
 	}
+	public function hapus_pelanggan($id)  {
+		$where = array('id' => $id);
+		$this->model_pelanggan->hapus_data_pelanggan($where, 'tb_pelanggan');
+		redirect('c_pelanggan/tampil_pelanggan');
+	}
+	public function edit($id){
+		$where = array('id' => $id);
+		$data['pelanggan'] = $this->model_pelanggan->edit_pelanggan($where, 'tb_pelanggan')->result();
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('form_edit_pelanggan', $data);
+		$this->load->view('template/footer');
+	}
+	public function update_pelanggan(){
+		$id = $this->input->post('id');
+		$nama_pelanggan = $this->input->post('nama_pelanggan');
+
+		$data = array(
+			'nama_pelanggan' => $nama_pelanggan,
+		);
+		$where = array(
+			'id' => $id
+		);
+		$this->model_pelanggan->update_data($where, $data, 'tb_pelanggan');
+		redirect('c_pelanggan/tampil_pelanggan');
+	}
 }
 ;?>

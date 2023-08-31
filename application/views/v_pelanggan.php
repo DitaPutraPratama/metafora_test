@@ -5,6 +5,7 @@
 		<tr>
 			<th>no</th>
 			<th>nama_pelanggan</th>
+			<th colspan="3">aksi</th>
 		</tr>
 		<?php
 		$no = 1;
@@ -12,6 +13,8 @@
 			<tr>
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $plg->nama_pelanggan; ?></td>
+				<td><?php echo anchor('c_pelanggan/edit/' . $plg->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?></td>
+				<td><?php echo anchor('c_pelanggan/hapus_pelanggan/' . $plg->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>'); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</table>

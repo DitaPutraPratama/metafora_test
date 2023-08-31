@@ -67,7 +67,7 @@ class c_transaksi extends CI_Controller
 		$data = array(
 			'id_pelanggan' => $pelanggan,
 			'id_barang' => $barang,
-			// 'harga'=>$harga,
+			'harga'=>$harga,
 			'jumlah' => $jumlah,
 			'subtotal' => $subtotal,
 		);
@@ -103,7 +103,7 @@ class c_transaksi extends CI_Controller
 		$data = array(
 			'id_pelanggan'=>$pelanggan,
 			'id_barang'=>$barang,
-			// 'harga'=>$harga,
+			'harga'=>$harga,
 			'jumlah'=>$jumlah,
 			'subtotal'=>$subtotal,
 		);
