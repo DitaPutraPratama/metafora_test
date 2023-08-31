@@ -21,7 +21,7 @@
 				<td><?php echo $tr->harga; ?></td>
 				<td><?php echo $tr->jumlah; ?></td>
 				<td><?php echo $tr->subtotal; ?></td>
-				<td><?php echo anchor('c_transaksi/edit/'.$tr->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?>
+				<td><?php echo anchor('c_transaksi/edit/' . $tr->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?>
 				</td>
 				<td><?php echo anchor('c_transaksi/hapus/' . $tr->id, '<div class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></div>'); ?>
 				</td>
@@ -50,15 +50,15 @@
 						</select>
 
 						<label class="form-label">Nama Barang</label>
-						<select name="barang" id="" class="form-control">
+						<select name="barang" id="barang" class="form-control">
 							<option value="">-- Pilih --</option>
 							<?php foreach ($barang as $brg) : ?>
-								<option value="<?= $brg->id_barang; ?>"><?= $brg->nama_barang; ?></option>
+								<option value="<?= $brg->id_barang; ?>" harga="<?= $brg->harga; ?>"><?= $brg->nama_barang; ?></option>
 							<?php endforeach; ?>
 						</select>
 
 						<label class="form-label">Harga Barang</label>
-						<input type="number" class="form-control" id="" name="harga" placeholder="">
+						<input type="number" class="form-control" id="harga" name="harga" placeholder="">
 
 						<label class="form-label">Jumlah</label>
 						<input type="number" class="form-control" id="" name="jumlah" placeholder="">
@@ -72,3 +72,18 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var selectBarang = document.getElementById("barang");
+		var inputHarga = document.getElementById("harga");
+
+		selectBarang.addEventListener("change", function() {
+			var selectedOption = selectBarang.options[selectBarang.selectedIndex];
+			var selectedHarga = selectedOption.getAttribute("harga");
+
+			inputHarga.value = selectedHarga;
+
+		});
+	});
+</script>

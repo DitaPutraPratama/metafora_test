@@ -1,9 +1,10 @@
 <div class="content-wrapper">
 	<section class="content-header mx-3">
 			<h3>halman transaksi <?php echo $transaksi->nama_pelanggan; ?> </h3>
-			<form action="<?php base_url('c_transaksi/input_transaksi' . $transaksi->id) ?>" method="post" class="">
+			<form action="<?php echo base_url('c_transaksi/input_transaksi')?>" method="post" class="">
 				<div class="form-group">
-					<p>nama</p>
+					<label>nama</label>
+					<input name="id" type="hidden" value="<?php echo $transaksi->id?>">
 					<select class="form-control" name="pelanggan" id="">
 						<?php foreach ($pelanggan as $plg) { ?>
 							<option value="<?= $plg->id ?>" <?php if ($transaksi->id_pelanggan == $plg->id) {

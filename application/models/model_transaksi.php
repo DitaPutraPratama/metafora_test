@@ -16,7 +16,7 @@ class Model_transaksi extends CI_Model{
 	public function update_transaksi($data,$id){
 		$this->db->set($data);
 		$this->db->where('id',$id);
-		$this->db->update('tb_barang',$data);
+		$this->db->update('tb_transaksi',$data);
 	}
 	public function post_transaksi ($data,$table){
 		$this->db->insert($table, $data);

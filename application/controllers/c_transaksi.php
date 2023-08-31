@@ -56,7 +56,8 @@ class c_transaksi extends CI_Controller
 		$this->load->view('v_edit',$data);
 		$this->load->view('template/footer');
 	}
-	public function input_transaksi($id){
+	public function input_transaksi(){
+		$id = $this->input->post('id');
 		$pelanggan = $this->input->post('pelanggan');
 		$barang = $this->input->post('barang');
 		$harga = $this->input->post('harga');
@@ -71,7 +72,10 @@ class c_transaksi extends CI_Controller
 			'subtotal' => $subtotal,
 		);
 
-		$transaksi=$this->db->query("SELECT * FROM tb_transaksi WHERE id='$id'")->result();
+		// var_dump($data);
+		// return
+
+		$transaksi=$this->db->query("SELECT * FROM tb_transaksi WHERE id='$id'")->row();
 
 		$id_barang_lama=$transaksi->id;
 		$jumlah_jual_barang_lama=$transaksi->jumlah;
@@ -81,7 +85,7 @@ class c_transaksi extends CI_Controller
 		$this->db->query("UPDATE tb_barang SET stok=stok-'$jumlah'WHERE id_barang='$barang'");
 
 		$this->model_transaksi->update_transaksi($data, $id);
-		redirect("c_transaksi");
+		redirect('c_transaksi');
 	}
 	public function tambah_transaksi(){
 		$pelanggan = $this->input->post('pelanggan');
