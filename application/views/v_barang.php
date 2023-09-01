@@ -1,12 +1,12 @@
 <div class="container-fluid">
-	<h1>Tabel barang</h1>
+	<h1>Tabel Barang</h1>
 	<?php echo $this->session->flashdata('pesan'); ?>
 	<button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#tambahData"><i class="fas fa-plus"></i>Tambah Data</button>
 	<table class="table table-hover table-striped">
-		<tr>
-			<th>no</th>
-			<th>nama_barang</th>
-			<th>harga</th>
+		<tr class="thead-dark">
+			<th>No</th>
+			<th>Nama Barang</th>
+			<th>Harga</th>
 			<th>Stok</th>
 			<th colspan="2">Aksi</th>
 		</tr>
@@ -24,7 +24,7 @@
 			</tr>
 		<?php endforeach; ?>
 	</table>
-	<a class="btn btn-sm btn-success" href="<?php echo base_url('c_transaksi') ?>">kembali</a>
+	<a class="btn btn-sm btn-success" href="<?php echo base_url('c_transaksi') ?>">Kembali</a>
 
 	<!-- modal tambah data -->
 

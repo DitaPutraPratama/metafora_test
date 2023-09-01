@@ -4,7 +4,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+		<ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion " id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
@@ -13,7 +13,7 @@
 				</div>
 			</a>
 
-			<!-- Divider -->z
+			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
@@ -49,12 +49,17 @@
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
 			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" id="darkModeSwitch">
+				</label>
+			</div>
 
 		</ul>
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content-wrapper" class="d-flex flex-column bg-light text-dark">
 
 			<!-- Main Content -->
 			<div id="content">

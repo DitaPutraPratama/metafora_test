@@ -3,14 +3,14 @@
 	<?php echo $this->session->flashdata('pesan'); ?>
 	<button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#tambahData"><i class="fas fa-plus"></i>Tambah Data</button>
 	<table class="table table-hover table-striped">
-		<tr>
-			<th>no</th>
-			<th>nama</th>
-			<th>barang</th>
-			<th>harga</th>
-			<th>jumlah</th>
-			<th>subtotal</th>
-			<th colspan="3">aksi</th>
+		<tr class="thead-dark">
+			<th scope="col">No</th>
+			<th scope="col">Nama</th>
+			<th scope="col">Barang</th>
+			<th scope="col">Harga</th>
+			<th scope="col">Jumlah</th>
+			<th scope="col">Subtotal</th>
+			<th colspan="3">Aksi</th>
 		</tr>
 		<?php
 		$no = 1;
