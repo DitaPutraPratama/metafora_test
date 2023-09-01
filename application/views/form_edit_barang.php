@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<h3>edit data barang</h3>
+	<h3>Edit data Barang</h3>
 	<?php echo $this->session->flashdata('pesan'); ?>
 	<?php foreach ($barang as $brg) :; ?>
 		<form method="post" action="<?php echo base_url() . 'c_barang/update_barang' ?>">

@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header mx-3">
+		<h3>Halman Transaksi <?php echo $transaksi->nama_pelanggan; ?> </h3>
 		<?php echo $this->session->flashdata('pesan'); ?>
-		<h3>halman transaksi <?php echo $transaksi->nama_pelanggan; ?> </h3>
 		<form action="<?php echo base_url('c_transaksi/input_transaksi') ?>" method="post" class="">
 			<div class="form-group">
 				<label>nama</label>

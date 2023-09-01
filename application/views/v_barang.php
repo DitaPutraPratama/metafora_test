@@ -1,9 +1,9 @@
 <div class="container-fluid">
-	<h1>Tabel barang</h1>
+	<h1>Tabel Barang</h1>
 	<?php echo $this->session->flashdata('pesan'); ?>
 	<button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#tambahData"><i class="fas fa-plus"></i>Tambah Data</button>
 	<table class="table table-hover table-striped">
-		<tr>
+		<tr class="thead-dark">
 			<th>no</th>
 			<th>nama_barang</th>
 			<th>harga</th>
