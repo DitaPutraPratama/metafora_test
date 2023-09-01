@@ -36,7 +36,7 @@
 					<form action="<?php echo base_url() . 'c_pelanggan/tambah_pelanggan' ?>" method="post" class="form-group">
 						<label for="">Nama Pelanggan</label>
 						<input class="form-control" name="nama_pelanggan" type="text" name="">
-						<button type="reset" class="btn mt-2 btn-danger" data-dismiss="modal">Reset</button>
+						<button type="reset" class="btn mt-2 btn-danger">Reset</button>
 						<button type="submit" class="btn btn-success mt-2">Kirim</button>
 					</form>
 				</div>

@@ -45,7 +45,7 @@
 						<input class="form-control" name="harga" type="number" name="">
 						<label for="">stok</label>
 						<input class="form-control" name="stok" type="number" name="">
-						<button type="reset" class="btn mt-2 btn-danger" data-dismiss="modal">Reset</button>
+						<button type="reset" class="btn mt-2 btn-danger">Reset</button>
 						<button type="submit" class="btn btn-success mt-2">Kirim</button>
 					</form>
 				</div>

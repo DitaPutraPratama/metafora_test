@@ -105,6 +105,18 @@ class c_transaksi extends CI_Controller
 		$subtotal = intval($harga)* intval($jumlah);
 
 		$sBarang=$this->db->query("SELECT stok FROM tb_barang WHERE id_barang='$barang'")->row();
+		// var_dump($sBarang);
+		// die();
+		
+		if ($sBarang->stok < $jumlah) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				stok tidak mencukupi
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+				redirect('c_transaksi');
+		}
 		$upStok = intval($sBarang->stok)- intval($jumlah);
 		$stokBaru = ['stok'=>$upStok];
 

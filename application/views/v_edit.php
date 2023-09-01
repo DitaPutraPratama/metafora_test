@@ -37,7 +37,7 @@
 				<input class="form-control" type="text" name="subtotal" value="<?php echo $transaksi->subtotal ?>">
 			</div>
 			<button type="submit" class="btn btn-primary btn-sm mt-3">Kirim</button>
-			<button type="reset" class="btn btn-danger btn-sm mt-3">Reset</button>
+			<a href="<?php echo base_url('c_transaksi'); ?>" class="btn btn-warning btn-sm mt-3">Kembali</a>
 		</form>
 	</section>
 </div>
