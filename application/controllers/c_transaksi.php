@@ -72,6 +72,16 @@ class c_transaksi extends CI_Controller
 			'subtotal' => $subtotal,
 		);
 
+		if (empty($pelanggan) || empty($barang) || empty($harga) || empty($jumlah) || empty($subtotal)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Harap isi semua form
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+			redirect('c_transaksi/edit/'.$id);
+		}
+
 		// var_dump($data);
 		// return
 
@@ -107,6 +117,15 @@ class c_transaksi extends CI_Controller
 			'jumlah'=>$jumlah,
 			'subtotal'=>$subtotal,
 		);
+		if (empty($pelanggan) || empty($barang) || empty($harga) || empty($jumlah) || empty($subtotal)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Harap isi semua form
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+			redirect('c_transaksi');
+		}
 		$this->model_transaksi->post_transaksi($data, 'tb_transaksi');
 		redirect('c_transaksi');
 	}

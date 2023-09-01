@@ -1,5 +1,6 @@
 <div class="container-fluid">
 	<h1>Tabel barang</h1>
+	<?php echo $this->session->flashdata('pesan'); ?>
 	<button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#tambahData"><i class="fas fa-plus"></i>Tambah Data</button>
 	<table class="table table-hover table-striped">
 		<tr>
@@ -18,7 +19,7 @@
 				<td>Rp. <?= number_format($brg->harga, 0, ',', '.'); ?></td>
 				<td><?php echo $brg->stok; ?></td>
 
-				<td><?php echo anchor('c_barang/edit/'.$brg->id_barang, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>') ; ?></td>
+				<td><?php echo anchor('c_barang/edit/' . $brg->id_barang, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?></td>
 				<td><?php echo anchor('c_barang/hapus_barang/' . $brg->id_barang, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>'); ?></td>
 			</tr>
 		<?php endforeach; ?>

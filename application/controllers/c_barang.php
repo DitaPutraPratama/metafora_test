@@ -23,6 +23,15 @@ class C_barang extends CI_Controller{
 			'harga' => $harga,
 			'stok' => $stok,
 		);
+		if (empty($nama) || empty($harga) || empty($stok)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Harap isi semua form
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+			redirect('c_barang/tampil_barang');
+		}
 		$this->model_barang->input_barang($data, 'tb_barang');
 		redirect('c_barang/tampil_barang');
 	}
@@ -49,6 +58,15 @@ class C_barang extends CI_Controller{
 		$where = array(
 			'id_barang' => $id
 		);
+		if (empty($nama_barang) || empty($harga) || empty($stok)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Harap isi semua form
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>');
+			redirect('c_barang/edit/'.$id);
+		}
 		$this->model_barang->update_data($where, $data, 'tb_barang');
 		redirect('c_barang/tampil_barang');
 	}

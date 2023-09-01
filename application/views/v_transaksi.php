@@ -1,5 +1,6 @@
 <div class="container-fluid">
 	<h1>Table Transaksi</h1>
+	<?php echo $this->session->flashdata('pesan'); ?>
 	<button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#tambahData"><i class="fas fa-plus"></i>Tambah Data</button>
 	<table class="table table-hover table-striped">
 		<tr>
@@ -18,7 +19,7 @@
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $tr->nama_pelanggan; ?></td>
 				<td><?php echo $tr->nama_barang; ?></td>
-				<td>Rp. <?= number_format($tr->harga, 0, ',', '.') ; ?></td>
+				<td>Rp. <?= number_format($tr->harga, 0, ',', '.'); ?></td>
 				<td><?php echo $tr->jumlah; ?></td>
 				<td>Rp. <?= number_format($tr->subtotal, 0, ',', '.'); ?></td>
 				<td><?php echo anchor('c_transaksi/edit/' . $tr->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?>
@@ -56,7 +57,7 @@
 								<option value="<?= $brg->id_barang; ?>" harga="<?= $brg->harga; ?>"><?= $brg->nama_barang; ?></option>
 							<?php endforeach; ?>
 						</select>
-						
+
 						<label class="form-label">Harga Barang</label>
 						<input type="number" class="form-control" id="harga" name="harga" placeholder="">
 
