@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database','cart','form_validation','pagination');
+$autoload['libraries'] = array('database','cart','form_validation','pagination','curl');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('model_barang','model_transaksi','model_pelanggan');
+$autoload['model'] = array('model_barang','model_transaksi','model_pelanggan','model_paymen');

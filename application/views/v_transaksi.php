@@ -22,9 +22,9 @@
 				<td>Rp. <?= number_format($tr->harga, 0, ',', '.'); ?></td>
 				<td><?php echo $tr->jumlah; ?></td>
 				<td>Rp. <?= number_format($tr->subtotal, 0, ',', '.'); ?></td>
-				<td><?php echo anchor('c_transaksi/edit/' . $tr->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?>
-				</td>
-				<td><?php echo anchor('c_transaksi/hapus/' . $tr->id, '<div class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></div>'); ?>
+				<td><?php echo anchor('c_transaksi/bayar/' . $tr->id, '<div class="btn btn-success  btn-sm"><i class="fa fa-dollar-sign"></i> Bayar</div>'); ?></td>
+				<td><?php echo anchor('c_transaksi/edit/' . $tr->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</div>'); ?></td>
+				<td><?php echo anchor('c_transaksi/hapus/' . $tr->id, '<div class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Delete</div>'); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

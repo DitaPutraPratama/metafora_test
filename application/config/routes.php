@@ -52,3 +52,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'c_transaksi';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['json-handler'] = 'c_transaksi/returnUrl';
+

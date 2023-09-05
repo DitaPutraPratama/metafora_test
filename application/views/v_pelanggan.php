@@ -5,7 +5,9 @@
 	<table class="table table-hover table-striped">
 		<tr class="thead-dark">
 			<th>No</th>
-			<th>Nama_pelanggan</th>
+			<th>Nama Pelanggan</th>
+			<th>Email</th>
+			<th>Telephone</th>
 			<th colspan="3">aksi</th>
 		</tr>
 		<?php
@@ -14,8 +16,10 @@
 			<tr>
 				<td><?php echo $no++; ?></td>
 				<td><?php echo $plg->nama_pelanggan; ?></td>
-				<td><?php echo anchor('c_pelanggan/edit/' . $plg->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></div>'); ?></td>
-				<td><?php echo anchor('c_pelanggan/hapus_pelanggan/' . $plg->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>'); ?></td>
+				<td><?php echo $plg->email; ?></td>
+				<td><?php echo $plg->telp; ?></td>
+				<td><?php echo anchor('c_pelanggan/edit/' . $plg->id, '<div class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</div>'); ?></td>
+				<td><?php echo anchor('c_pelanggan/hapus_pelanggan/' . $plg->id, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</div>'); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</table>

@@ -30,5 +30,15 @@ class Model_transaksi extends CI_Model{
 		$query = $this->db->get();
 		return $query;
 	}
+	public function get_data_bayar($id){
+		$this->db->select('tb_transaksi.*, tb_barang.nama_barang, tb_pelanggan.nama_pelanggan, tb_pelanggan.telp,tb_pelanggan.email,tb_pyMethod.metode');
+		$this->db->from('tb_transaksi');
+		$this->db->where('tb_transaksi.id =' . $id);
+		$this->db->join('tb_barang', 'tb_barang.id_barang = tb_transaksi.id_barang', 'left');
+		$this->db->join('tb_pyMethod', 'tb_pyMethod.id_method = tb_transaksi.id_method', 'left');
+		$this->db->join('tb_pelanggan', 'tb_pelanggan.id = tb_transaksi.id_pelanggan');
+		$query = $this->db->get();
+		return $query;
+	}
 }
 ;?>
