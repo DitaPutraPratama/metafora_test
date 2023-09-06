@@ -150,7 +150,7 @@ class c_transaksi extends CI_Controller
 			'pelanggan' => $this->model_pelanggan->get_pelanggan(),
 			'paymen' => $this->model_paymen->get_paymenmethod()->result(),
 		];
-		
+
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('bayar', $data);
@@ -160,6 +160,7 @@ class c_transaksi extends CI_Controller
 	}
 	public function pembayaran()
 	{
+		$id = $this->input->post('id');
 		$pelanggan = $this->input->post('pelanggan');
 		$email = $this->input->post('email');
 		$telp = $this->input->post('telp');
@@ -179,17 +180,17 @@ class c_transaksi extends CI_Controller
 		$method       = 'POST'; //method
 
 		//Request Body//
-		$body['buyerName']=$pelanggan;
-		$body['buyerEmail']=$email;
-		$body['buyerPhone']=$telp;
-		$body['paymentMethod']=$metode;      
+		$body['buyerName'] = $pelanggan;
+		$body['buyerEmail'] = $email;
+		$body['buyerPhone'] = $telp;
+		$body['paymentMethod'] = $metode;
 		$body['product']    = array($barang);
 		$body['qty']        = array($jumlah);
 		$body['price']      = array($harga);
-		$body['returnUrl']  = base_url('c_transaksi/returnUrl');
+		$body['returnUrl'] = base_url('c_transaksi/returnUrl') . '?referenceId=' . $id;
 		$body['cancelUrl']  = base_url('c_transaksi/cancelUrl');
 		$body['notifyUrl']  = base_url('c_transaksi/notifyUrl');
-		$body['referenceId'] = '1234'; //your reference id
+		$body['referenceId'] = $id; //your reference id
 		//End Request Body//
 		// var_dump($body);
 		// return
@@ -243,42 +244,95 @@ class c_transaksi extends CI_Controller
 			//End Response
 		}
 	}
-	public function returnUrl(){
-		$data=array(
-			'return' => $this->input->get('return'),
-			'trx_id' => $this->input->get('trx_id'),
-			'via' => $this->input->get('via'),
-			'channel' => $this->input->get('channel'),
-			'status' => $this->input->get('status'),
-		);
+	public function returnUrl()
+	{
+		// Mendapatkan nilai referenceId dari URL callback
+		$id = $this->input->get('referenceId');
 
-		// Lakukan logika berdasarkan parameter yang diterima
-		if ($data['status'] == 'berhasil') {
-			// Transaksi berhasil, lakukan apa yang diperlukan di sini
-			// Contoh: Tampilkan halaman "Transaksi Berhasil"
-			$this->load->view('template/header');
-			$this->load->view('template/sidebar');
-			$this->load->view('returnUrl',$data);
-			$this->load->view('template/footer');
+		// Buat SQL Query untuk mendapatkan data transaksi berdasarkan referenceId
+		$query = "SELECT * FROM tb_transaksi WHERE id = ?";
+		$result = $this->db->query($query, $id);
+		$transaksi_data = $result->row();
+
+		// Pastikan data transaksi ditemukan
+		if ($transaksi_data) {
+			$data = array(
+				'return' => $this->input->get('return'),
+				'referenceId' => $this->input->get('referenceId'),
+				'trx_id' => $this->input->get('trx_id'),
+				'via' => $this->input->get('via'),
+				'channel' => $this->input->get('channel'),
+				'status' => $this->input->get('status'),
+				// 'transaksi_data' => $transaksi_data,
+				'transaksi' => $this->model_transaksi->get_riwayat_transaksi($id)->row(),
+			);
+			// var_dump($data);
+			// return;
+
+			// Lakukan logika berdasarkan parameter yang diterima
+			if ($data['status'] == 'berhasil') {
+				// Simpan data ke tabel riwayat_transaksi
+				$this->db->insert('tb_riwayat_transaksi', $transaksi_data);
+
+				// Hapus data dari tabel transaksi (Opsional)
+				$this->db->where('id', $id);
+				$this->db->delete('tb_transaksi');
+				// Transaksi berhasil, tampilkan tampilan "returnUrl"
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar');
+				$this->load->view('returnUrl', $data);
+				$this->load->view('template/footer');
+			} elseif ($data['status'] == 'pending') {
+				// Transaksi gagal, tampilkan tampilan "cancelUrl"
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar');
+				$this->load->view('pendingUrl', $data);
+				$this->load->view('template/footer');
+			} elseif ($data['status'] == 'expired') {
+				$this->load->view('template/header');
+				$this->load->view('template/sidebar');
+				$this->load->view('expiredUrl', $data);
+				$this->load->view('template/footer');
+			}
 		} else {
-			// Transaksi gagal, lakukan apa yang diperlukan di sini
-			// Contoh: Tampilkan halaman "Transaksi Gagal"
-			$this->load->view('template/header');
-			$this->load->view('template/sidebar');
-			$this->load->view('cancelUrl',$data);
-			$this->load->view('template/footer');
+			// Data transaksi tidak ditemukan
+			echo "Data transaksi tidak ditemukan";
 		}
 	}
-	public function cancelUrl(){
+
+
+	public function cancelUrl()
+	{
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('cancelUrl');
 		$this->load->view('template/footer');
 	}
-	public function notifyUrl(){
+	public function notifyUrl()
+	{
 		$this->load->view('template/header');
 		$this->load->view('template/sidebar');
 		$this->load->view('notifyUrl');
 		$this->load->view('template/footer');
+	}
+	public function riwayat_transaksi()
+	{
+		$data = [
+			'transaksi' => $this->model_transaksi->get_riwayat_transaksi_view()->result(),
+			'barang' => $this->model_barang->get_barang(),
+			'pelanggan' => $this->model_pelanggan->get_pelanggan(),
+
+		];
+
+		$this->load->view('template/header');
+		$this->load->view('template/sidebar');
+		$this->load->view('v_riwayat_transaksi', $data);
+		$this->load->view('template/footer');
+	}
+	public function hapus_transaksi($id)
+	{
+		$where = array('id' => $id);
+		$this->model_transaksi->hapus_data_transaksi($where, 'tb_riwayat_transaksi');
+		redirect('c_transaksi/riwayat_transaksi');
 	}
 };

@@ -41,6 +41,11 @@
 					<i class="fas fa-fw fa-user"></i>
 					<span>Pelanggan</span></a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo base_url('c_transaksi/riwayat_transaksi') ?>">
+					<i class="fas fa-fw fa-user"></i>
+					<span>Riwayat Transaksi</span></a>
+			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">

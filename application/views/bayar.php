@@ -5,6 +5,7 @@
 		<form action="<?php echo base_url('c_transaksi/pembayaran/' . $transaksi->id) ?>" method="post" class="">
 			<div class="form-group">
 				<label>Nama Pelanggan</label>
+				<input type="hidden" class="form-control" name="id" id="" value="<?= $transaksi->id ?>" readonly>
 				<input class="form-control" name="pelanggan" id="" value="<?= $transaksi->nama_pelanggan ?>" readonly>
 				<label>Email</label>
 				<input class="form-control" name="email" id="" value="<?= $transaksi->email ?>" readonly>
